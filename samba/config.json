@@ -1,0 +1,8 @@
+{
+    "config_version":"1",
+    "name":"samba",
+    "directory":[],
+    "secrets":["user","password"],
+    "download_file":["docker-compose.yaml"],
+    "extra_command":[]
+}

@@ -1,0 +1,38 @@
+# 说明:密码请在 secrets 目录下设置一个 <service name>.env 文件存储格式如下
+# SAMBA_PASSWORD=123456789
+# SAMBA_USERNAME=abc
+
+version: '3'
+services:
+  # smb 共享服务器,方便修改配置文件
+  samba:
+    container_name: "samba"
+    image: "dperson/samba"
+    ports:
+      - "137:137/udp"
+      - "138:138/udp"
+      - "139:139/tcp"
+      - "445:445/tcp"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    stdin_open: true
+    tty: true
+    networks:
+      - SmartHomeOS
+    environment:
+      WORKGROUP: WORKGROUP
+      USERID: ${PUID:-0}
+      GROUPID: ${PGID:-0}
+      TZ: "Asia/Shanghai"
+    env_file:
+      ../secrets/samba.env
+    volumes:
+      # 把上级配置文件目录挂载到容器内
+      - "../:/config"
+      - "/etc/localtime:/etc/localtime"
+
+networks:
+  SmartHomeOS:
+    external: true

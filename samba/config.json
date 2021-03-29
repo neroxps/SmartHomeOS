@@ -3,6 +3,7 @@
     "name":"samba",
     "directory":[],
     "secrets":["user","password"],
+    "base_url":"https://cdn.jsdelivr.net/gh/neroxps/SmartHomeOS@main",
     "download_file":["docker-compose.yaml"],
     "extra_command":[]
 }

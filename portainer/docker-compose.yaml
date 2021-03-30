@@ -18,7 +18,6 @@ services:
       - "./data:/data"
       # 以服务器时区作为容器时区
       - "/etc/localtime:/etc/localtime:ro"
-    command: >-
 networks:
   SmartHomeOS:
     external: true

@@ -19,7 +19,6 @@ services:
       # 以服务器时区作为容器时区
       - "/etc/localtime:/etc/localtime:ro"
     command: >-
-      --admin-password-file=/tmp/portainer_password
 networks:
   SmartHomeOS:
     external: true

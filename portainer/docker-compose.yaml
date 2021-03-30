@@ -1,0 +1,31 @@
+# 说明:密码请在 secrets 目录下设置一个 portainer_password 文件存储密码
+# $ cat portainer_password
+# $ 123456789
+
+version: '3'
+services:
+  # # Dcoekr 管理 UI 程序
+  portainer:
+    container_name: "portainer"
+    image: "portainer/portainer"
+    networks:
+      - SmartHomeOS
+    user: ${PUID:-0}:${PGID:-0}
+    ports:
+      - "9000:9000"
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      # 映射 docker sock 文件以让 portainer 控制宿主 docker
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      # portainer 配置文件持久化
+      - "./data:/data"
+      # 以服务器时区作为容器时区
+      - "/etc/localtime:/etc/localtime:ro"
+      # admin 登录密码文件
+      - "../secrets/portainer_password:/tmp/portainer_password:ro"
+    command: >-
+      --admin-password-file=/tmp/portainer_password
+networks:
+  SmartHomeOS:
+    external: true

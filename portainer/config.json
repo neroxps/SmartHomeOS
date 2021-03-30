@@ -1,0 +1,8 @@
+{
+    "config_version":"1",
+    "name":"portainer",
+    "directory":["data"],
+    "secrets":["user","password"],
+    "download_file":["docker-compose.yaml"],
+    "extra_command":["echo ${password} > \"${SECRETS_DIRECTORY}/portainer_password\""]
+}

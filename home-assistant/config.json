@@ -1,0 +1,8 @@
+{
+    "config_version":"1",
+    "name":"homeassistant",
+    "directory":["config"],
+    "secrets":[],
+    "download_file":["docker-compose.yaml"],
+    "extra_command":[]
+}

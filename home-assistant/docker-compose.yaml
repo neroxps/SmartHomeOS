@@ -1,0 +1,14 @@
+version: '3'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:stable
+    user: "${PUID:-0}:${PGID:-0}"
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./config:/config
+      - ../share:/share
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    network_mode: host

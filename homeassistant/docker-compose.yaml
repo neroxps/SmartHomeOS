@@ -3,7 +3,6 @@ services:
   homeassistant:
     container_name: homeassistant
     image: homeassistant/home-assistant:stable
-    user: "${PUID:-0}:${PGID:-0}"
     environment:
       TZ: Asia/Shanghai
     volumes:

@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    env_file:
+      - ../secrets/mosquitto.env
+    ports:
+      - "1883:1883"
+      - "1884:1884"
+    networks:
+      - SmartHomeOS
+    volumes:
+      - ./entrypoint.sh:/entrypoint.sh:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/mosquitto/data
+      - ./config:/mosquitto/config
+      - ./log:/mosquitto/log
+    entrypoint: >-
+      /bin/sh /entrypoint.sh
+networks:
+  SmartHomeOS:
+    external: true

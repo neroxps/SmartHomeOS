@@ -1,0 +1,8 @@
+{
+    "config_version":"1",
+    "name":"mosquitto",
+    "directory":["config","data","log"],
+    "secrets":["user","password"],
+    "download_file":["docker-compose.yaml","entrypoint.sh","config/mosquitto.conf"],
+    "extra_command":[]
+}

@@ -18,6 +18,7 @@ services:
       - ./log:/mosquitto/log
     entrypoint: >-
       /bin/sh /entrypoint.sh
+    command: /usr/sbin/mosquitto -c /mosquitto/config/mosquitto.conf
 networks:
   SmartHomeOS:
     external: true

@@ -7,7 +7,6 @@ if [[ ! -z $PGID ]] && [[ ! -z $PUID ]]; then
 fi
 echo "set mosquitto user:${MOSQUITTO_USER_NAME}"
 echo "" > /tmp/pwfile.conf
-mosquitto_passwd -b /tmp/pwfile.conf ${MOSQUITTO_USER_NAME} ${MOSQUITTO_PASSWORD}
-chmod 400 /tmp/pwfile.conf
-/docker-entrypoint.sh
-exec "$@"
+mosquitto_passwd -b /tmp/pwfile.conf ${MOSQUITTO_USER_NAME} ${MOSQUITTO_PASSWORD} > /dev/null 2>&1 || true
+chmod 444 /tmp/pwfile.conf
+/docker-entrypoint.sh "$@"

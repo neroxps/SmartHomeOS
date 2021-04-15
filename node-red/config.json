@@ -1,0 +1,8 @@
+{
+    "config_version":"1",
+    "name":"node-red",
+    "directory":["node-red-data"],
+    "secrets":["user","password"],
+    "download_file":["docker-compose.yaml","node-red-data/settings.js","dockerfile","set_pw.sh"],
+    "extra_command":["bash ${service_directory}/set_pw.sh ${username} ${password} >> ${SECRETS_DIRECTORY}/${name}.env"]
+}

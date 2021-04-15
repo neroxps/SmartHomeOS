@@ -1,0 +1,12 @@
+FROM nodered/node-red:latest-12-minimal
+
+USER root
+
+ARG packages
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \
+&& apk update \
+&& apk add --no-cache "$packages" \
+&& npm config set registry https://registry.npm.taobao.org
+
+USER node-red
